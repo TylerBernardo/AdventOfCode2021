@@ -87,4 +87,5 @@ function part2(input){
   return count - 1
 }
 
+console.log(part1(pInput))
 console.log(part2(pInput))
