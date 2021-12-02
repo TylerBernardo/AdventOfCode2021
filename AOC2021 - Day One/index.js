@@ -1,5 +1,5 @@
 const fs = require("fs")
-
+//parse the input
 function makeInput(){
   var output = []
   var file = fs.readFileSync("input.txt",'utf-8')
@@ -8,7 +8,7 @@ function makeInput(){
   }
   return output
 }
-
+//save parsed input
 var pInput = makeInput()
 
 /*
@@ -33,12 +33,16 @@ In this example, there are 7 measurements that are larger than the previous meas
 How many measurements are larger than the previous measurement?
 */
 function part1(input){
+  //start count
   var count = 0
+  //loop thorugh each input
   for(var x = 1; x < input.length-1; x++){
+    //if the current input is greater than the previous input increase the count
     if(input[x]  >input[x-1]){
       count++
     }
   }
+  //return the count
   return count
 }
 
@@ -74,18 +78,24 @@ Consider sums of a three-measurement sliding window. How many sums are larger th
 */
 
 function part2(input){
+  //intilize the count and last sum
   var count = 0
   var last = 0
+  //loop through each input starting at the 3rd element
   for(var x = 2; x < input.length - 1; x++){
+    //take the sum of the current andprevious two elements
     var sum = input[x] +  input[x-1] + input[x-2]
-    console.log(sum)
+    //if the current sum is greater than the last, increase count
     if(sum  > last){
       count++
     }
+    //update the value of last to the current sum
     last = sum
   }
+  //return the count lowered by one
+  //this is because the first sum is greater than zero, but it shouldn't count towards  the total
   return count - 1
 }
-
+//run the part one and two functions
 console.log(part1(pInput))
 console.log(part2(pInput))
